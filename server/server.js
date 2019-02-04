@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-
+var { ObjectID } = require('mongodb');
 
 var { mongoose } = require('./db/mongoose');
 var {Book} = require('./models/book');
@@ -66,12 +66,12 @@ app.post('/books', (req, res) => {
             return res.status(404).send();
         }
 
-        Todo.findById(id).then((todo) => {
-            if (!todo) {
+        Book.findById(id).then((book) => {
+            if (!book) {
                 return res.status(404).send();
             }
 
-            res.send({ todo });
+            res.send({ book });
         }).catch((e) => {
             res.status(400).send();
         });
