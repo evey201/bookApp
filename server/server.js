@@ -7,29 +7,13 @@ var {Book} = require('./models/book');
 //var {newBook}= require('./models/book');
 var {newBooks}= require('./models/book');
 var {User} = require('./models/user');
-//const authRoutes = require('./routes/auth');
+const authRoutes = require('../routes/auth');
 
 var app = express();
 
 app.use(bodyParser.json());
 
-//app.use('/auth', authRoutes);
-
-//To add a user
-app.post('/users', (req, res) => {
-    var user = new User({
-        name: req.body.name,
-        email: req.body.email,
-        password:req.body.password
-    });
-
-    user.save().then((doc) => {
-        res.send(doc);
-    }, (e) => {
-        res.status(400).send(e);
-    });
-
-});
+app.use(authRoutes);
 
 //To post a new book to the database
 app.post('/books', (req, res) => {

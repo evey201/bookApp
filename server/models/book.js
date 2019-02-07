@@ -1,47 +1,57 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-var Book = mongoose.model('Book', {
+
+const bookSchema = new Schema({
     name: {
-            type: String,
-            required: true,
-            minlength: 1,
-            trim: true
-        },
+        type: String,
+        required: true,
+        minlength: 1,
+        trim: true
+    },
+
     author: {
         type: String,
         trim: true
     },
+
     rating: {
         type: Number
     },
-    // completed: {
-    //     default: true
-    // }
-});
+    status: {
+        type: String,
+        default: "New entry"
+    }
+},
+    { timestamps: true }
+);
 
-// var newBook = new Book({
-//         text:  'Aer the Gods to blame',
-//         author: 'Folu',
-//         rating: 3
-// });
+const Book = mongoose.model('Book', bookSchema, 'books');
+module.exports = { Book };
+
+// // var newBook = new Book({
+// //         text:  'Aer the Gods to blame',
+// //         author: 'Folu',
+// //         rating: 3
+// // });
 
 
 
-module.exports = {
-    Book
-   // newBook,
-};
-    // var Schema = mongoose.Schema;
+// module.exports = {
+//     Book
+//    // newBook,
+// };
+//     // var Schema = mongoose.Schema;
     
-    // var bookSchema = new Schema({
-    //   title:  String,
-    //   author: String,
+//     // var bookSchema = new Schema({
+//     //   title:  String,
+//     //   author: String,
       
-    //   //comments: [{ body: String, date: Date }],
-    //   date: { type: Date, default: Date.now },
-    //   hidden: Boolean,
-    //   meta: {
-    //     ratings: Number,
-    //     //favs:  Number
-    //   }
-    // });
+//     //   //comments: [{ body: String, date: Date }],
+//     //   date: { type: Date, default: Date.now },
+//     //   hidden: Boolean,
+//     //   meta: {
+//     //     ratings: Number,
+//     //     //favs:  Number
+//     //   }
+//     // });

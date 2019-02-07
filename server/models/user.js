@@ -16,11 +16,15 @@ const userSchema = new Schema({
     name: {
         type: String,
         required: true
+    },
+    status: {
+        type: String,
+        default: "I am a new User!!!!"
     }
+},
+    { timestamps: true }
+);
 
 
-});
-
-
-const User = mongoose.model('User', userSchema);
-module.exports = {User};
+const User = mongoose.model('User', userSchema, 'users');
+module.exports = User;
