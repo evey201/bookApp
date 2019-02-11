@@ -14,7 +14,7 @@ var port = process.env.PORT || 3000
 
 app.use(bodyParser.json());
 
-app.use(authRoutes);
+app.use(authRoutes);                
 
 app.get('/', (req, res)=>{
     res.send('App is working')
