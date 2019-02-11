@@ -11,6 +11,7 @@ const authRoutes = require('../routes/auth');
 
 var app = express();
 
+
 app.use(bodyParser.json());
 
 app.use(authRoutes);

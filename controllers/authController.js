@@ -9,7 +9,7 @@ exports.signup = async (req, res, next) => {
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(422).json({ error: errors.array() });
+            return res.status(400).json({ error: errors.array() });
         }
     
         await User.create({
@@ -35,8 +35,8 @@ exports.signUpValidation = [
         .isEmail()
         .withMessage('Please enter a valid email')
         .custom((value,  { req }) => {
-            return User.findOne({ email: value }).then(userDoc => {
-                if (userDoc) {
+            return User.findOne({ email: value }).then(user => {
+                if (user) {
                     return Promise.reject('E-mail address already exists');
                 }
             });
@@ -53,6 +53,7 @@ exports.signUpValidation = [
         .isEmpty()
 ] 
 
+//loggingIn controller
 exports.login = async (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
@@ -61,7 +62,7 @@ exports.login = async (req, res, next) => {
         .then(user => {
             if (!user) {
                 const Error = new Error('A user with this email could not be found');
-                err.statusCode = 401;
+                err.statusCode = 400;
                 throw error;
             }
             loadedUser = user;

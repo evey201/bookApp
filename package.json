@@ -4,8 +4,12 @@
   "description": "A simple Book application with their book ratings. Minimum rating is 1 and maximum is 5",
   "main": "server.js",
   "scripts": {
+    "start": "node server/server.js",
     "test": "mocha server/**/*.test.js",
     "test-watch": "nodemon --exec npm test"
+  },
+  "engines": {
+    "node": "11.9.0"
   },
   "author": "Evey",
   "license": "ISC",
