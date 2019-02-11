@@ -16,6 +16,10 @@ app.use(bodyParser.json());
 
 app.use(authRoutes);
 
+app.get('/', (req, res)=>{
+    res.send('App is working')
+})
+
 //To post a new book to the database
 app.post('/books', (req, res) => {
     var book = new Book({
