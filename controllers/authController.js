@@ -92,20 +92,20 @@ exports.login = async (req, res, next) => {
         });
 
     //Delete COntroller
-    exports.deleteUser = async(req, res) => {
-        const deleteUserId = req.params.id;
-        console.log('ID ==> ', deleteUserId);
-        if (!ObjectID.isValid(deleteUserId)) {
-            console.log('not found!!');
-            return res.status(404).send();
-        }
+    // exports.deleteUser = async(req, res) => {
+    //     const deleteUserId = req.params.id;
+    //     console.log('ID ==> ', deleteUserId);
+    //     if (!ObjectID.isValid(deleteUserId)) {
+    //         console.log('not found!!');
+    //         return res.status(404).send();
+    //     }
 
-        User.findOneAndDelete(deleteUserId).exec().then(() => {
-            return res.json('User Deleted Successfully!');
-        }).catch(error => {
-            console.log('Error:: ', error);
-        });
-    }
+    //     User.findOneAndDelete(deleteUserId).exec().then(() => {
+    //         return res.json('User Deleted Successfully!');
+    //     }).catch(error => {
+    //         console.log('Error:: ', error);
+    //     });
+    // }
 
     
 
