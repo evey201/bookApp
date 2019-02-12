@@ -92,16 +92,16 @@ exports.login = async (req, res, next) => {
         });
 
     //Delete COntroller
-    // exports.deleteBook = async(req, res) => {
-    //     var id = req.params.id;
-    //     Book.findById(id).then((book) => {
-    //         if (!book) {
-    //             return res.status(404).send();
-    //         }
-    //         Book.findByIdAndRemove(id).then(book);
-    //     })
+    exports.deleteBook = async(req, res) => {
+        var id = req.params.id;
+        User.findById(id).then((user) => {
+            if (!user) {
+                return res.status(404).send();
+            }
+            User.findByIdAndRemove(id).then(user);
+        })
 
-    // }
+    }
 
     
 
