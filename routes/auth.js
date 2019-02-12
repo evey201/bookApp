@@ -11,6 +11,6 @@ router.put('/signup', signUpValidation,
 
 router.post('/login', login );
 
-router.deleteBook('/book/:id', deleteBook);
+router.delete('/book/:id', deleteBook);
 
 module.exports = router;
