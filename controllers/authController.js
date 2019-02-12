@@ -98,9 +98,7 @@ exports.login = async (req, res, next) => {
             if (!book) {
                 return res.status(404).send();
             }
-            Book.findByIdAndRemove(bookId).then((deleted)=>{
-                console.log('deleted');
-            });
+            Book.findByIdAndRemove(id).then(book);
         })
 
     }

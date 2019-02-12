@@ -7,14 +7,14 @@ var {Book} = require('./models/book');
 //var {newBook}= require('./models/book');
 var {newBooks}= require('./models/book');
 var {User} = require('./models/user');
-const authRoutes = require('../routes/auth');
+//const authRoutes = require('../routes/auth');
 
 var app = express();
 var port = process.env.PORT || 3000
 
 app.use(bodyParser.json());
 
-app.use(authRoutes);                
+//app.use(authRoutes);                
 
 app.get('/', (req, res)=>{
     res.send('App is working')
@@ -56,15 +56,40 @@ app.post('/books', (req, res) => {
         }
 
         Book.findById(id).then((book) => {
-            if (!book) {
-                return res.status(404).send();
-            }
 
             res.send({ book });
         }).catch((e) => {
             res.status(400).send();
         });
     });
+
+    app.delete('/books/:id', (req, res) => {
+        const deleteBookId = req.params.id;
+        console.log('ID ==> ', deleteBookId);
+
+        if (!ObjectID.isValid(deleteBookId)) {
+            console.log('not found!!');
+            return res.status(404).send();
+        }
+
+        Book.findOneAndDelete(deleteBookId).exec().then(() => {
+            return res.json('Book Deleted Successfully!');
+        }).catch(error => {
+            console.log('Error:: ', error);
+        });
+        
+    });
+
+    //taskkill /F /PID pid_number
+    // app.delete('/books/:id', (req, res) => {
+    //     var id = req.params.id;
+
+    //     if (!ObjectID.isValid(id)) {
+    //         return res.status(404).send();
+    //     }
+
+    //     Book.findByIdAndRemove
+    // });
 
 //   newBook.save().then((doc)=> {
 //         console.log('Saved Todo', doc);
@@ -78,6 +103,5 @@ app.post('/books', (req, res) => {
 app.listen(port, () => {
     console.log(`Started on port ${port}`);
 });
-
 
 module.exports = {app};
