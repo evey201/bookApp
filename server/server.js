@@ -7,14 +7,14 @@ var {Book} = require('./models/book');
 //var {newBook}= require('./models/book');
 var {newBooks}= require('./models/book');
 var {User} = require('./models/user');
-//const authRoutes = require('../routes/auth');
+const authRoutes = require('../routes/auth');
 
 var app = express();
 var port = process.env.PORT || 3000
 
 app.use(bodyParser.json());
 
-//app.use(authRoutes);                
+app.use(authRoutes);                
 
 app.get('/', (req, res)=>{
     res.send('App is working')
