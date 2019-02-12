@@ -63,6 +63,7 @@ app.post('/books', (req, res) => {
         });
     });
 
+    //delete book 
     app.delete('/books/:id', (req, res) => {
         const deleteBookId = req.params.id;
         console.log('ID ==> ', deleteBookId);
@@ -73,6 +74,24 @@ app.post('/books', (req, res) => {
         }
 
         Book.findOneAndDelete(deleteBookId).exec().then(() => {
+            return res.json('Book Deleted Successfully!');
+        }).catch(error => {
+            console.log('Error:: ', error);
+        });
+        
+    });
+
+// delete user
+    app.delete('/users/:id', (req, res) => {
+        const deleteUserId = req.params.id;
+        console.log('ID ==> ', deleteUserId);
+
+        if (!ObjectID.isValid(deleteUserId)) {
+            console.log('not found!!');
+            return res.status(404).send();
+        }
+
+        User.findOneAndDelete(deleteUserId).exec().then(() => {
             return res.json('Book Deleted Successfully!');
         }).catch(error => {
             console.log('Error:: ', error);
