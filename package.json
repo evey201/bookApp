@@ -2,7 +2,7 @@
   "name": "books-api",
   "version": "1.0.0",
   "description": "A simple Book application with their book ratings. Minimum rating is 1 and maximum is 5",
-  "main": "server.js",
+  "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
     "test": "mocha server/**/*.test.js",
