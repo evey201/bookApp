@@ -5,7 +5,7 @@ const {signup, signUpValidation, login, deleteUser} = require('../controllers/au
 
 const User = require('../server/models/user');
 
-router.put('/signup', signUpValidation, 
+router.post('/signup', signUpValidation, 
     signup
 );
 
