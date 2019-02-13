@@ -1,8 +1,9 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var { ObjectID } = require('mongodb');
+const _ = require('lodash');
+const express = require('express');
+const bodyParser = require('body-parser');
+const { ObjectID } = require('mongodb');
 
-var { mongoose } = require('./db/mongoose');
+const { mongoose } = require('./db/mongoose');
 var {Book} = require('./models/book');
 //var {newBook}= require('./models/book');
 var {newBooks}= require('./models/book');
@@ -79,6 +80,22 @@ app.post('/books', (req, res) => {
             console.log('Error:: ', error);
         });
         
+    });
+
+    //update Book
+    app.put('/book/:id', (req, res) => {
+        const updateBook = req.params.id;
+        const body = _.pick(req.body, ['status', 'name', 'author']);
+        console.log('ID ==>', updateBook);
+
+        if (!ObjectID.isValid(updateBook)) {
+            console.log('not found!!');
+            return res.status(404).send();
+        }
+
+        Book.findOneAndUpdate(updateBook, {$set: body}, {$new: true}).exec().then(() => {
+            return res.json('Book update')
+        });
     });
 
 // delete user
