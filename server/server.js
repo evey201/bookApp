@@ -94,7 +94,7 @@ app.post('/books', (req, res) => {
         }
 
         Book.findOneAndUpdate(updateBook, {$set: body}, {$new: true}).exec().then(() => {
-            return res.json('Book update')
+            return res.json('Book sucessfully updated')
         });
     });
 
