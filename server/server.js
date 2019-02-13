@@ -37,7 +37,7 @@ app.post('/books', (req, res) => {
   
 });  
 // To fetch a book with its ratings from the database
-  app.get('/books', (req, res) => {
+  app.get('/book', (req, res) => {
     Book.find().then((book) => {
             res.send({book});
       }, (e) => {
@@ -64,7 +64,7 @@ app.post('/books', (req, res) => {
     });
 
     //delete book 
-    app.delete('/books/:id', (req, res) => {
+    app.delete('/book/:id', (req, res) => {
         const deleteBookId = req.params.id;
         console.log('ID ==> ', deleteBookId);
 
