@@ -37,7 +37,7 @@ app.post('/books', (req, res) => {
   
 });  
 // To fetch a book with its ratings from the database
-  app.get('/book', (req, res) => {
+  app.get('/books', (req, res) => {
     Book.find().then((book) => {
             res.send({book});
       }, (e) => {
@@ -48,7 +48,7 @@ app.post('/books', (req, res) => {
 
 
   //To fetch by unique id
-    app.get('/books/:id', (req, res) => {
+    app.get('/book/:id', (req, res) => {
         var id = req.params.id;
 
         if (!ObjectID.isValid(id)) {
